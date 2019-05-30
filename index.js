@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const reader = require('readline');
 
 let variables = ['\'use strict\';\nlet people = [\'simon\', \'garfunckle\', \'oats\']; \nlet pushedPeople =[];\n people.forEach( el => { \n el.split(\',\');\n pushedPeople.push(el);\n console.log(pushedPeople);\n});'];
 
@@ -25,20 +26,45 @@ fileCreation(variables);
 
 */
 
+//From lecture to deal with HTML tags
+
 //let bufferMemory = Buffer.alloc(variables.length);
 
-let stringingBuffer = (info) => {
-    let strng = '';
-    for (let chars of info){
-        strng += String.fromCharCode(chars);
-    }
-    return strng;
-};
+// class Converter {
+//   constructor() {
+//     this.buffer = Buffer.from('');
+//     this.tags = {};
+//   }
+//   createTag (tags, buffer) {
+//     if (!this.tags[tag] ) {
+//       this.tags[tag] = {
+//         open: Buffer.from(`<${tag}>`),
+//         close: Buffer.from(`</${tag}>`),
+//       };
+//     };
+//   }
+//   this.buffer = Buffer.concat( [this.buffer, this.tags[tag].open, buffer, this.tags[tag].close])
+
+//   convert(file) {
+//     let linReader = readThis.createInterface({
+//       input fs.createReadStream(file)
+//     })
+//   }
+// }
+
+// let stringingBuffer = (info) => {
+//     let strng = '';
+//     for (let chars of info){
+//         strng += String.fromCharCode(chars);
+//     }
+//     return strng;
+// }; End from lecture
+
 
 let myFile = './files/pair-programming.txt';
-let toFile = './files/pair-programming.html';
-let begin = '<section>\n';
-let end = '\n</section>';
+let toFile = './files/index.html';
+let begin = '<article>\n';
+let end = '\n</article>';
 
 let theReader = () => {
   fs.readFile(myFile, (err, info) => {
